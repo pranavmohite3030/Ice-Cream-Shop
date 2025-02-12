@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %} contct {% endblock title %}
+
+{% block body %}
+<head>
+       <style>
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Push text to the bottom */
+            align-items: center; /* Center horizontally */
+            background: url('/static/contactus.jpg') no-repeat center center/cover;
+            color: #000000;
+            text-align: center;
+            padding: 5px 20px;
+            height: 400px; /* Adjust as needed */
+            font-family: bold italic;
+        }
+       </style>
+</head>
+<div class="container-fluid px-0 py-0 mx-0">
+    <div class="hero">
+    </div>
+    
+
+</div>
+<div class="container my-4">
+    <h2 class="text-center">Contact us</h2>
+    <form method="post" action="/contact">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                placeholder="Enter your email address">
+            <div id="emailHelp" name="desc" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="phone" class="form-control" id="phone" name="phone" placeholder="Enter you phone Number">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+                placeholder="Enter you password">
+        </div>
+        <div class="mb-3">
+            <label for="desc" class="form-label">Write the reason for Contact</label>
+            <input type="text" name="desc" class="form-control" id="desc" placeholder="write down the reason">
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock body %}
