@@ -1,0 +1,400 @@
+{% extends 'base.html' %}
+
+{% block title %} Contact {% endblock title %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      background: url('/static/order_bg6.webp') no-repeat center center/cover;
+      color: #000000;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      height: 400px;
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      font-style: italic;
+      height: 100vh;
+      min-height: 400px;
+    }
+
+    .container_of_container {
+      margin: 0;
+      padding: 0;
+      background-color: rgb(255, 240, 248);
+      position: relative;
+      top: -1px;
+      background-image: url('/static/bg22.webp');
+      background-size: cover;
+      background-position: center;
+
+    }
+
+    .container {
+      height: 100%;
+      background: none;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      background-color: rgb(255, 240, 248);
+    }
+
+    .col {
+      gap: 70px;
+    }
+
+    .card img {
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      text-align: center;
+    }
+
+    .card-text {
+      margin-bottom: 0.5rem;
+      font-style: italic;
+      font-family: Fredoka One;
+      font-weight: bold;
+      font-size: larger;
+    }
+
+    .row {
+      row-gap: 20px;
+      /* Adds 20px gap between cards in the vertical direction */
+      margin-bottom: 40px;
+      margin-top: 0px;
+    }
+
+    .d-flex {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    /* Modal styling */
+    .modal-content {
+      padding: 20px;
+      text-align: center; /* Centers inline or block elements */
+    }
+
+    #modalImage {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto 15px;
+    }
+
+    .btn-close {
+      outline: none;
+      /* Removes the focus outline */
+      border: none;
+      /* Removes any border */
+      background-color: transparent;
+      /* Makes the background transparent */
+      font-size: x-large;
+    }
+
+    .heading {
+      /* my-0 py-5 text-center */
+      padding-bottom: 40px;
+      padding-top: 40px;
+      text-align: center;
+
+      #modalImage {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 15px;
+        display: block;
+      }
+
+      /* Add this to make it a block element */
+    }
+    
+  </style>
+</head>
+
+<body>
+  <!-- <div class="hero">
+  </div> -->
+  <div class="container_of_container">
+    <div class="container my-0">
+      <h1 class="heading">Select from our range of Ice creams</h1>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+        <!-- Example Ice Cream Cards -->
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/salted caramal soy.avif" class="d-block" alt="Salted Caramel Soy"
+              data-icecream-name="Salted Caramel Soy" data-icecream-img="/static/Ice creams/salted caramal soy.avif">
+            <div class="card-body">
+              <p class="card-text">Salted Caramel Soy</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Salted Caramel Soy"
+                    data-icecream-img="/static/Ice creams/salted caramal soy.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/raspberry sorbet.avif" class="d-block" alt="Raspberry Sorbet"
+              data-icecream-name="Raspberry Sorbet" data-icecream-img="/static/Ice creams/raspberry sorbet.avif">
+            <div class="card-body">
+              <p class="card-text">Raspberry Sorbet</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Raspberry Sorbet"
+                    data-icecream-img="/static/Ice creams/raspberry sorbet.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/vanilla straberry.avif" class="d-block" alt="Vanilla Strawberry"
+              data-icecream-name="Vanilla Strawberry" data-icecream-img="/static/Ice creams/vanilla straberry.avif">
+            <div class="card-body">
+              <p class="card-text">Vanilla Strawberry</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Vanilla Strawberry"
+                    data-icecream-img="/static/Ice creams/vanilla straberry.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/pitachio.avif" class="d-block" alt="Pistachio" data-icecream-name="Pistachio"
+              data-icecream-img="/static/Ice creams/pitachio.avif">
+            <div class="card-body">
+              <p class="card-text">Pistachio</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Pistachio"
+                    data-icecream-img="/static/Ice creams/pitachio.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/lime sorbet.avif" class="d-block" alt="Lime Sorbet"
+              data-icecream-name="Lime Sorbet" data-icecream-img="/static/Ice creams/lime sorbet.avif">
+            <div class="card-body">
+              <p class="card-text">Lime Sorbet</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Lime Sorbet"
+                    data-icecream-img="/static/Ice creams/lime sorbet.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/chocolate chip.avif" class="d-block" alt="Chocolate Chip"
+              data-icecream-name="Chocolate Chip" data-icecream-img="/static/Ice creams/chocolate chip.avif">
+            <div class="card-body">
+              <p class="card-text">Chocolate Chip</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Chocolate Chip"
+                    data-icecream-img="/static/Ice creams/chocolate chip.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/cherry cheesecake.avif" class="d-block" alt="Cherry Cheesecake"
+              data-icecream-name="Cherry Cheesecake" data-icecream-img="/static/Ice creams/cherry cheesecake.avif">
+            <div class="card-body">
+              <p class="card-text">Cherry Cheesecake</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Cherry Cheesecake"
+                    data-icecream-img="/static/Ice creams/cherry cheesecake.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/brambleberry sorbet.avif" class="d-block" alt="Brambleberry Sorbet"
+              data-icecream-name="Brambleberry Sorbet" data-icecream-img="/static/Ice creams/brambleberry sorbet.avif">
+            <div class="card-body">
+              <p class="card-text">Brambleberry Sorbet</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Brambleberry Sorbet"
+                    data-icecream-img="/static/Ice creams/brambleberry sorbet.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <img src="/static/Ice creams/banana honey.avif" class="d-block" alt="Banana Honey"
+              data-icecream-name="Banana Honey" data-icecream-img="/static/Ice creams/banana honey.avif">
+            <div class="card-body">
+              <p class="card-text">Banana Honey</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal"
+                    data-bs-target="#purchaseModal" data-icecream-name="Banana Honey"
+                    data-icecream-img="/static/Ice creams/banana honey.avif">Buy</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for selecting quantity -->
+  <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="purchaseModalLabel">Select Quantity</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
+        </div>
+        <div class="modal-body">
+          <img id="modalImage" src="" alt="Ice Cream Image">
+          <p id="icecreamName" class="text-center"></p>
+          <form id="purchaseForm">
+            {% csrf_token %} <!-- Include CSRF token for security -->
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity" min="1" value="1" class="form-control mb-3">
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="<script src="
+    https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Set ice cream name and image in the modal dynamically
+    var purchaseModal = document.getElementById('purchaseModal');
+    purchaseModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var icecreamName = button.getAttribute('data-icecream-name');
+      var icecreamImg = button.getAttribute('data-icecream-img');
+      var icecreamNameDisplay = document.getElementById('icecreamName');
+      var modalImage = document.getElementById('modalImage');
+
+      icecreamNameDisplay.textContent = "You selected: " + icecreamName;
+      modalImage.src = icecreamImg;
+      console.log('Modal opened - Img:', icecreamImg); // Debug image path
+    });
+
+    // Handle form submission with AJAX
+    document.getElementById('purchaseForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var quantity = document.getElementById('quantity').value;
+      var icecreamName = document.getElementById('icecreamName').textContent.replace('You selected: ', '');
+      var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+      console.log('CSRF Token:', csrfToken); // Debug CSRF token
+      console.log('Sending:', { icecream_name: icecreamName, quantity: quantity });
+
+      // Send data to the server
+      fetch('/order/save_order/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken, // CSRF token included in headers
+        },
+        body: JSON.stringify({
+          icecream_name: icecreamName,
+          quantity: quantity,
+        }),
+      })
+        .then(response => {
+          console.log('Response status:', response.status); // Debug response status
+          if (!response.ok) throw new Error('Network response was not ok: ' + response.status);
+          return response.json();
+        })
+        .then(data => {
+          console.log('Response data:', data); // Debug response data
+          if (data.status === 'success') {
+            var modal = bootstrap.Modal.getInstance(purchaseModal);
+            if (modal) {
+              modal.hide();
+              document.querySelector('.modal-backdrop')?.remove();
+              document.body.classList.remove('modal-open');
+              console.log('Modal hidden and backdrop removed');
+              setTimeout(() => {
+                alert('Order added successfully: ' + quantity + ' x ' + icecreamName);
+              }, 300);
+            } else {
+              console.error('Modal instance not found');
+            }
+          } else {
+            alert('Error: ' + data.message);
+          }
+        })
+        .catch(error => {
+          console.error('Fetch error:', error);
+          alert('An error occurred while saving the order: ' + error.message);
+        });
+    });
+  </script>
+</body>
+
+</html>
+{% endblock body %}

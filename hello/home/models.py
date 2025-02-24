@@ -10,3 +10,11 @@ class Contact(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.email})'
+    
+class IceCreamOrder(models.Model):
+    icecream_name = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField()
+    order_date = models.DateTimeField(auto_now_add=True)  # Automatically set when order is created
+
+    def __str__(self):
+        return f"{self.quantity} x {self.icecream_name}"    

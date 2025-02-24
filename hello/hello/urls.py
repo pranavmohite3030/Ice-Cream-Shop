@@ -23,5 +23,6 @@ admin.site.index_title = "Welcome to Pranav Ice-creams Researcher Portal"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('home.urls'))
+    path('', include('home.urls')),
+    path('order/', include('home.urls')),
 ]

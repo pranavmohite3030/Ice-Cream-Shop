@@ -1,150 +1,148 @@
 {% extends 'base.html' %}
 
-{% block title %} Home {% endblock title %}
+{% block title %}Home{% endblock title %}
 
 {% block body %}
 <head>
   <style>
-    .container-fluid {
-      
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(206, 246, 253, 0.9);
+      text-align: center;
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Fixed Background */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/static/bg8.webp') no-repeat center/cover;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    /* Sections Wrapper */
+    .sections {
+      position: relative;
+      width: 100%;
+      margin-top: 60px; /* Space for navbar */
+    }
+
+    /* Section Styling */
+    .section {
+      position: relative;
+      width: 100%;
+      min-height: 100vh; /* Minimum height, allows expansion */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Image Section */
+    .image-section {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-size: 100% auto; /* Change this line */
+   background-repeat: no-repeat;
+   background-position: center;
+   z-index: 1;
+   transition: transform 0.6s ease, opacity 0.6s ease;
+   opacity: 0.85;
+ }
+
+    .image-section:hover {
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
+    /* Specific Image Backgrounds */
+    .image1 {
+      background-image: url('/static/bg4.webp');
+    }
+    .image2 {
+      background-image: url('/static/bg 9.webp');
+    }
+    .image3 {
+      background-image: url('/static/bg10.webp');
+    }
+
+    /* Text Box */
+    .text-box {
+      position: relative;
+      z-index: 2;
+      padding: 25px;
+      background: none;
+      color: #fff;
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-align: center;
+      border-radius: 15px;
+      max-width: 80%;
+      transition: transform 0.3s ease;
+    }
+
+    .text-box:hover {
+      transform: translateY(-7px);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .text-box {
+        font-size: 2rem;
+        padding: 15px;
+        max-width: 90%;
+      }
+      .navbar {
+        padding: 10px 0;
+      }
+      .section {
+        min-height: 80vh; /* Slightly shorter on mobile */
+      }
+      .image-section {
+        background-size: 100% auto; /* Fallback for smaller screens */
+      }
     }
   </style>
 </head>
-<div class="container-fluid w-100 h-30">
-  <div id="carouselExampleCaptions" class="carousel slide">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="/static/1.jpg" class="d-block w-100" alt="Icecream image" style="height: 40vh; object-fit: cover;">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Most famous Ice-cream in Maharashtra</h5>
-          <p>Scoops of Happiness in Every Bite!</p>
-        </div>
-      </div>
-      
-      <div class="carousel-item">
-        <img src="/static/2.jpeg" class="d-block h-50 w-100" alt="Icecream image">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Second slide label</h5>
-          <p>Some representative placeholder content for the second slide.</p>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <img src="/static/3.jpeg" class="d-block w-100" alt="Icecream image">
-        <div class="carousel-caption d-none d-md-block">
-          <h5>Third slide label</h5>
-          <p>Some representative placeholder content for the third slide.</p>
-        </div>
-      </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
-<div class="container my-4">
-<h1 class="my-2 text-center">Select from our range of Icecreams</h1>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/a.jpeg" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/b.webp" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/c.jpeg" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/d.webp" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/e.webp" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col">
-      <div class="card shadow-sm">
-        <img src="/static/f.jpeg" class="d-block w-100" alt="Icecream image">
-        <div class="card-body">
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-              <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-            </div>
-            <small class="text-body-secondary">9 mins</small>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- Fixed Background -->
+<div class="background"></div>
+
+<!-- Sections -->
+<div class="sections">
+  <div class="section">
+    <div class="image-section image1"></div>
+    <div class="text-box">Scoop into Happiness!</div>
+  </div>
+
+  <div class="section">
+    <div class="image-section image2"></div>
+    <div class="text-box">Every Scoop Tells a Story!</div>
+  </div>
+
+  <div class="section">
+    <div class="image-section image3"></div>
+    <div class="text-box">Treat Yourself Today!</div>
   </div>
 </div>
+
 {% endblock body %}

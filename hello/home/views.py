@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from home.models import Contact
 from django.http import HttpResponse
 from django.contrib import messages
+from django.http import JsonResponse
+from .models import IceCreamOrder
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def index(request):
     context = {
@@ -12,9 +16,6 @@ def index(request):
 
 def about(request):
     return render(request, 'about.html')
-
-def services(request):
-    return render(request, 'services.html')
 
 def contact(request):
     if request.method == "POST":
@@ -30,3 +31,25 @@ def contact(request):
         # return HttpResponse("Thank you for contacting us!")
         messages.success(request, "Your message has been sent.")
     return render(request, 'contact.html')
+
+def order(request):
+    return render(request, 'order.html')
+
+# View to handle the form submission
+@csrf_exempt  # Use this temporarily for testing; in production, handle CSRF properly
+def save_order(request):
+    if request.method == "POST":
+        try:
+            # Parse JSON data from the request body
+            data = json.loads(request.body)
+            icecream_name = data.get('icecream_name')
+            quantity = data.get('quantity')
+
+            # Save to the database
+            order = IceCreamOrder(icecream_name=icecream_name, quantity=quantity)
+            order.save()
+
+            return JsonResponse({'status': 'success', 'message': 'Order saved successfully!'})
+        except Exception as e:
+            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
